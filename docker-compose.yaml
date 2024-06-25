@@ -1,0 +1,19 @@
+services:
+  qa:
+    image: qa:1.0
+    container_name: qa
+    build:
+      context: ./src
+      dockerfile: qa.dockerfile
+
+    restart: always
+    command: python main.py
+    ports:
+      - 8004:8004
+    volumes:
+      - ./src:/app
+
+volumes:
+  weaviate_data:
+networks:
+  t_net:
